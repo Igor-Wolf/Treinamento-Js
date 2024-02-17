@@ -1,4 +1,4 @@
-// # 1️⃣ Desafio Classificador de nível de Herói
+// # 2️⃣ Calculadora de partidas Rankeadas
 
 // **O Que deve ser utilizado**
 
@@ -6,51 +6,64 @@
 // - Operadores
 // - Laços de repetição
 // - Estruturas de decisões
+// - Funções
 
-// ## Objetivo
+// ## Objetivo:
 
-// Crie uma variável para armazenar o nome e a quantidade de experiência (XP) de um herói, depois utilize uma estrutura de decisão para apresentar alguma das mensagens abaixo:
+// Crie uma função que recebe como parâmetro a quantidade de vitórias e derrotas de um jogador,
+// depois disso retorne o resultado para uma variável, o saldo de Rankeadas deve ser feito através do calculo (vitórias - derrotas)
 
-// Se XP for menor do que 1.000 = Ferro
-// Se XP for entre 1.001 e 2.000 = Bronze
-// Se XP for entre 2.001 e 5.000 = Prata
-// Se XP for entre 5.001 e 7.000 = Ouro
-// Se XP for entre 7.001 e 8.000 = Platina
-// Se XP for entre 8.001 e 9.000 = Ascendente
-// Se XP for entre 9.001 e 10.000= Imortal
-// Se XP for maior ou igual a 10.001 = Radiante
+// Se vitórias for menor do que 10 = Ferro
+// Se vitórias for entre 11 e 20 = Bronze
+// Se vitórias for entre 21 e 50 = Prata
+// Se vitórias for entre 51 e 80 = Ouro
+// Se vitórias for entre 81 e 90 = Diamante
+// Se vitórias for entre 91 e 100= Lendário
+// Se vitórias for maior ou igual a 101 = Imortal
 
 // ## Saída
 
 // Ao final deve se exibir uma mensagem:
-// "O Herói de nome **{nome}** está no nível de **{nivel}**"
+// "O Herói tem de saldo de **{saldoVitorias}** está no nível de **{nivel}**"
 
-var matriz = [["Arthur", 9999, ""], ["Lancelot", 7500, ""], ["Galahad", 12000, ""]];
 
-for (let i = 0; i < matriz.length; i++) {
-    if (matriz[i][1] <= 1000) {
+
+//Entrada
+var matriz = [["Arthur", 99, "",0], ["Lancelot", 75, "",10], ["Galahad", 120, "",17]];
+
+
+function ranked(matriz,i) {
+    
+    result = matriz[i][1] - matriz[i][3]
+
+    if (result <= 10) {
         matriz[i][2]="Ferro"
     }
-    else if (matriz[i][1] > 1000 && matriz[i][1] <= 2000) {
+    else if (result > 10 && result <= 20) {
         matriz[i][2] = "Bronze"
     }
-    else if (matriz[i][1] > 2000 && matriz[i][1] <= 5000) {
+    else if (result > 20 && result <= 50) {
         matriz[i][2] = "Prata"
     }
-    else if (matriz[i][1] > 5000 && matriz[i][1] <= 7000) {
+    else if (result > 50 && result <= 70) {
         matriz[i][2] = "Ouro"
     }
-    else if (matriz[i][1] > 7000 && matriz[i][1] <= 8000) {
+    else if (result > 70 && result <= 80) {
         matriz[i][2]= "Platina"
     }
-    else if (matriz[i][1] > 8000 && matriz[i][1] <= 9000) {
+    else if (result > 80 && result <= 90) {
         matriz[i][2]= "Ascendente"
     }
-    else if (matriz[i][1] > 9000 && matriz[i][1] <= 10000) {
+    else if (result > 90 && result <= 100) {
         matriz[i][2]= "Imortal"
     }
-    else if (matriz[i][1] > 10000) {
+    else if (result > 100) {
         matriz[i][2]= "Radiante"
     }
-    console.log("O Herói de nome " + matriz[i][0] + " está no rank " + matriz[i][2])
+    return result
+}
+
+for (let i = 0; i < matriz.length; i++) {
+    resultado = ranked(matriz,i)
+    console.log("O Herói de nome " + matriz[i][0] + " tem saldo de " + resultado + " e está no rank " + matriz[i][2])
 }
