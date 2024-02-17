@@ -1,4 +1,4 @@
-// # 2️⃣ Calculadora de partidas Rankeadas
+// # 3️⃣ Escrevendo as classes de um Jogo
 
 // **O Que deve ser utilizado**
 
@@ -7,63 +7,80 @@
 // - Laços de repetição
 // - Estruturas de decisões
 // - Funções
+// - Classes e Objetos
 
 // ## Objetivo:
 
-// Crie uma função que recebe como parâmetro a quantidade de vitórias e derrotas de um jogador,
-// depois disso retorne o resultado para uma variável, o saldo de Rankeadas deve ser feito através do calculo (vitórias - derrotas)
+// Crie uma classe generica que represente um herói de uma aventura e que possua as seguintes propriedades:
 
-// Se vitórias for menor do que 10 = Ferro
-// Se vitórias for entre 11 e 20 = Bronze
-// Se vitórias for entre 21 e 50 = Prata
-// Se vitórias for entre 51 e 80 = Ouro
-// Se vitórias for entre 81 e 90 = Diamante
-// Se vitórias for entre 91 e 100= Lendário
-// Se vitórias for maior ou igual a 101 = Imortal
+// - nome
+// - idade
+// - tipo (ex: guerreiro, mago, monge, ninja )
+
+// além disso, deve ter um método chamado atacar que deve atender os seguientes requisitos:
+
+// - exibir a mensagem: "o {tipo} atacou usando {ataque}")
+// - aonde o {tipo} deve ser concatenando o tipo que está na propriedade da classe
+// - e no {ataque} deve seguir uma descrição diferente conforme o tipo, seguindo a tabela abaixo:
+
+// se mago -> no ataque exibir (usou magia)
+// se guerreiro -> no ataque exibir (usou espada)
+// se monge -> no ataque exibir (usou artes marciais)
+// se ninja -> no ataque exibir (usou shuriken)
 
 // ## Saída
 
 // Ao final deve se exibir uma mensagem:
-// "O Herói tem de saldo de **{saldoVitorias}** está no nível de **{nivel}**"
 
+// - "o {tipo} atacou usando {ataque}"
+//   ex: mago atacou usando magia
+//   guerreiro atacou usando espada
+ 
 
+class Personagem {
+    constructor(nome, idade, job) {
+        this.nome = nome;
+        this.idade = idade;
+        this.job = job
+    }
 
-//Entrada
-var matriz = [["Arthur", 99, "",0], ["Lancelot", 75, "",10], ["Galahad", 120, "",17]];
-
-
-function ranked(matriz,i) {
-    
-    result = matriz[i][1] - matriz[i][3]
-
-    if (result <= 10) {
-        matriz[i][2]="Ferro"
+    // Método da classe
+    atack() {
+        let weapon=""
+        switch (this.job) {
+            
+            case "Guerreiro":
+                weapon = "espada"
+                break
+            case "Guardião":
+                weapon = "lança"
+                break
+            case "Paladino":
+                weapon = "Montante"
+                break
+            case "Mago":
+                weapon = "Magia"
+                break
+            case "Monge":
+                weapon = "Artes marciais"
+                break
+            case "Ninja":
+                weapon = "Shuriken"
+                break
+               
+            }
+              
+        
+        console.log(`${this.nome}, ${this.job}, atacou usando ${weapon}.`);
     }
-    else if (result > 10 && result <= 20) {
-        matriz[i][2] = "Bronze"
-    }
-    else if (result > 20 && result <= 50) {
-        matriz[i][2] = "Prata"
-    }
-    else if (result > 50 && result <= 70) {
-        matriz[i][2] = "Ouro"
-    }
-    else if (result > 70 && result <= 80) {
-        matriz[i][2]= "Platina"
-    }
-    else if (result > 80 && result <= 90) {
-        matriz[i][2]= "Ascendente"
-    }
-    else if (result > 90 && result <= 100) {
-        matriz[i][2]= "Imortal"
-    }
-    else if (result > 100) {
-        matriz[i][2]= "Radiante"
-    }
-    return result
 }
 
-for (let i = 0; i < matriz.length; i++) {
-    resultado = ranked(matriz,i)
-    console.log("O Herói de nome " + matriz[i][0] + " tem saldo de " + resultado + " e está no rank " + matriz[i][2])
-}
+const p1 = new Personagem("Arthur", 30, "Guerreiro");
+const p2 = new Personagem("Lancelot", 28, "Guardião");
+const p3 = new Personagem("Galahad", 20, "Paladino");
+const p4 = new Personagem("Merlin", 70, "Mago");
+
+p1.atack();
+p2.atack();
+p3.atack();
+p4.atack(); 
